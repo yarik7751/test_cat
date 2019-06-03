@@ -26,5 +26,11 @@ class CatsFragment : BaseFragment<CatsPresenter>(), CatsView {
     override fun updateCats(catsList: List<CatsViewModel>) {
         val adapter = CatsAdapter(catsList)
         catsListView.adapter = adapter
+
+        adapter.catsCallback = object : CatsAdapter.OnCatCallback {
+            override fun onCatClick(url: String) {
+                presenter.addCatToFavorite(url)
+            }
+        }
     }
 }

@@ -11,6 +11,8 @@ import kotlinx.android.synthetic.main.item_cat.view.*
 
 class CatsAdapter(var cats : List<CatsViewModel>) : RecyclerView.Adapter<CatsAdapter.CatsViewHolder>() {
 
+    lateinit var catsCallback : OnCatCallback
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CatsViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_cat, parent, false)
         return CatsViewHolder(view)
@@ -23,6 +25,10 @@ class CatsAdapter(var cats : List<CatsViewModel>) : RecyclerView.Adapter<CatsAda
             .load(url)
             .centerCrop()
             .into(holder.ivCat);
+
+        holder.btnAddCatTofavorite.setOnClickListener {
+            catsCallback.onCatClick(url)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -31,5 +37,10 @@ class CatsAdapter(var cats : List<CatsViewModel>) : RecyclerView.Adapter<CatsAda
 
     class CatsViewHolder(view : View) : RecyclerView.ViewHolder(view) {
         var ivCat = view.catsImage
+        var btnAddCatTofavorite = view.addToFavorite
+    }
+
+    interface OnCatCallback {
+        fun onCatClick(url: String)
     }
 }

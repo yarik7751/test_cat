@@ -25,6 +25,10 @@ class CatsPresenterImpl(view: CatsView) : BasePresenterImpl<CatsView>(view), Cat
         getAllCats()
     }
 
+    override fun addCatToFavorite(url: String) {
+
+    }
+
     private fun getAllCats() {
         addCDisposable(interactor.getCats(DEFAULT_LIMIT)
             .observeOn(AndroidSchedulers.mainThread())
