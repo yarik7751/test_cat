@@ -19,6 +19,11 @@ abstract class BaseFragment<P : BasePresenter> : Fragment(), BaseView {
         return view
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initUi()
+    }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         presenter.onActivityCreated(savedInstanceState)

@@ -7,10 +7,6 @@ import io.reactivex.disposables.Disposable
 abstract class BasePresenterImpl<V : BaseView>(var view: V) : BasePresenter {
     private var compositeDisposable: CompositeDisposable = CompositeDisposable()
 
-    override fun onCreateView() {
-        view.initUi()
-    }
-
     protected fun addCDisposable(disposable: Disposable) {
         compositeDisposable.add(disposable)
     }
