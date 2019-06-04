@@ -6,6 +6,7 @@ import by.yarik.cats_impl.domain.CatsInteractor
 import by.yarik.cats_impl.domain.CatsInteractorImpl
 import by.yarik.cats_impl.domain.CatsRepository
 import by.yarik.cats_impl.start.CatsStarterImpl
+import by.yarik.core.db.FavoriteCatsDatabase
 import by.yarik.core.network.Api
 import dagger.Module
 import dagger.Provides
@@ -19,8 +20,8 @@ class CatsModule {
     }
 
     @Provides
-    fun provideCatsRepository(api: Api) : CatsRepository {
-        return CatsRepositoryImpl(api)
+    fun provideCatsRepository(api: Api, database: FavoriteCatsDatabase) : CatsRepository {
+        return CatsRepositoryImpl(api, database)
     }
 
     @Provides

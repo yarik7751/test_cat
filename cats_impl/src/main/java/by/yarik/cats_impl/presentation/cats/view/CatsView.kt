@@ -6,4 +6,6 @@ import by.yarik.core.presentation.view.BaseView
 interface CatsView : BaseView {
 
     fun updateCats(catsList : List<CatsViewModel>)
+
+    fun sendSimpleMessage(message: String)
 }

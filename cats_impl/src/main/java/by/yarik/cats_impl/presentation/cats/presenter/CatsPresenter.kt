@@ -4,5 +4,5 @@ import by.yarik.core.presentation.presenter.BasePresenter
 
 interface CatsPresenter : BasePresenter {
 
-    fun addCatToFavorite(url : String)
+    fun addCatToFavoriteClick(url : String)
 }

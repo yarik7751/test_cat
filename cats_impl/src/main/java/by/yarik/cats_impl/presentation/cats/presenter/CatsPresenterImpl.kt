@@ -25,8 +25,8 @@ class CatsPresenterImpl(view: CatsView) : BasePresenterImpl<CatsView>(view), Cat
         getAllCats()
     }
 
-    override fun addCatToFavorite(url: String) {
-
+    override fun addCatToFavoriteClick(url: String) {
+        addCatToFavorite(url)
     }
 
     private fun getAllCats() {
@@ -35,5 +35,17 @@ class CatsPresenterImpl(view: CatsView) : BasePresenterImpl<CatsView>(view), Cat
             .subscribe({
                 view.updateCats(it)
             }, {onFailture(it)}))
+    }
+
+    private fun addCatToFavorite(url: String) {
+        addCDisposable(interactor.addCatToFavorite(url)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                addCatToFavoriteSuccessful()
+            }, {onFailture(it)}))
+    }
+
+    private fun addCatToFavoriteSuccessful() {
+        view.sendSimpleMessage("Cat has added")
     }
 }

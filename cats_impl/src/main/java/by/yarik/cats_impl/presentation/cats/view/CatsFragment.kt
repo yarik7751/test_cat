@@ -1,5 +1,6 @@
 package by.yarik.cats_impl.presentation.cats.view
 
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.yarik.cats_impl.R
 import by.yarik.cats_impl.presentation.cats.presenter.CatsPresenter
@@ -29,8 +30,12 @@ class CatsFragment : BaseFragment<CatsPresenter>(), CatsView {
 
         adapter.catsCallback = object : CatsAdapter.OnCatCallback {
             override fun onCatClick(url: String) {
-                presenter.addCatToFavorite(url)
+                presenter.addCatToFavoriteClick(url)
             }
         }
+    }
+
+    override fun sendSimpleMessage(message: String) {
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
     }
 }
