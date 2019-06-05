@@ -2,7 +2,7 @@ package by.yarik.cats_impl.presentation.cats.presenter
 
 import android.os.Bundle
 import by.yarik.cats_impl.di.CatsComponent
-import by.yarik.cats_impl.domain.CatsInteractor
+import by.yarik.cats_impl.domain.allcats.CatsInteractor
 import by.yarik.cats_impl.presentation.cats.view.CatsView
 import by.yarik.core.presentation.presenter.BasePresenterImpl
 import io.reactivex.android.schedulers.AndroidSchedulers

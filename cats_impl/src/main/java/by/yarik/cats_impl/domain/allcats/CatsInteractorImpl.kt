@@ -1,4 +1,4 @@
-package by.yarik.cats_impl.domain
+package by.yarik.cats_impl.domain.allcats
 
 import by.yarik.cats_impl.mapper.CatsViewModelMapper
 import by.yarik.cats_impl.viewmodel.CatsViewModel
@@ -7,7 +7,8 @@ import io.reactivex.Completable
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 
-class CatsInteractorImpl(var repository: CatsRepository) : BaseInteractorImpl(), CatsInteractor {
+class CatsInteractorImpl(var repository: CatsRepository) : BaseInteractorImpl(),
+    CatsInteractor {
 
     override fun getCats(limit : Int) : Single<List<CatsViewModel>> {
         return repository.getAllCats(limit)

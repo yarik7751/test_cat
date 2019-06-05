@@ -1,4 +1,4 @@
-package by.yarik.cats_impl.domain
+package by.yarik.cats_impl.domain.allcats
 
 import by.yarik.cats_impl.viewmodel.CatsViewModel
 import by.yarik.core.domain.BaseInteractor

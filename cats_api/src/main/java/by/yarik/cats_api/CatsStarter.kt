@@ -1,8 +1,8 @@
 package by.yarik.cats_api
 
-import androidx.fragment.app.Fragment
+import android.content.Context
 
 interface CatsStarter {
 
-    fun getScreen(): Fragment
+    fun startScreen(context: Context?, screen: Int)
 }

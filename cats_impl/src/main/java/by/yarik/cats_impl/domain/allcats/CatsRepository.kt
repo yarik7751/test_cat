@@ -1,4 +1,4 @@
-package by.yarik.cats_impl.domain
+package by.yarik.cats_impl.domain.allcats
 
 import by.yarik.cats_impl.model.CatsModel
 import by.yarik.core.domain.BaseRepository
