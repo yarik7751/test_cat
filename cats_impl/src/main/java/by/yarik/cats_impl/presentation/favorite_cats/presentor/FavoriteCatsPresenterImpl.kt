@@ -24,6 +24,8 @@ class FavoriteCatsPresenterImpl(view: FavoriteCatsView): BasePresenterImpl<Favor
     fun getFavoriteCats() {
         addCDisposable(interactor.getFavoriteCats()
             .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { view.startProgress() }
+            .doAfterTerminate { view.stopProgress() }
             .subscribe({
                 view.updateFaviriteCats(it)
             }, {onFailture(it)}))

@@ -6,4 +6,8 @@ import by.yarik.core.presentation.view.BaseView
 interface FavoriteCatsView: BaseView {
 
     fun updateFaviriteCats(cats: List<CatsViewModel>)
+
+    fun startProgress()
+
+    fun stopProgress()
 }

@@ -1,5 +1,6 @@
 package by.yarik.cats_impl.presentation.cats.view
 
+import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.yarik.cats_impl.R
@@ -33,6 +34,14 @@ class CatsFragment : BaseFragment<CatsPresenter>(), CatsView {
                 presenter.addCatToFavoriteClick(url)
             }
         }
+    }
+
+    override fun startProgress() {
+        progressBar.visibility = View.VISIBLE
+    }
+
+    override fun stopProgress() {
+        progressBar.visibility = View.GONE
     }
 
     override fun sendSimpleMessage(message: String) {

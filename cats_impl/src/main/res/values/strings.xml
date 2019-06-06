@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">cats_impl</string>
     <string name="add_to_favorite">Add to favorite</string>
+    <string name="cat_added">Cat has added</string>
 </resources>

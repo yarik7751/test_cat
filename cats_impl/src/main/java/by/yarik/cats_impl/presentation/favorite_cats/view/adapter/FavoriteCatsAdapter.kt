@@ -1,4 +1,4 @@
-package by.yarik.cats_impl.presentation.favorite_cats.view
+package by.yarik.cats_impl.presentation.favorite_cats.view.adapter
 
 import android.view.View
 import by.yarik.cats_impl.presentation.cats.view.adapter.CatsAdapter

@@ -7,5 +7,9 @@ interface CatsView : BaseView {
 
     fun updateCats(catsList : List<CatsViewModel>)
 
+    fun startProgress()
+
+    fun stopProgress()
+
     fun sendSimpleMessage(message: String)
 }
