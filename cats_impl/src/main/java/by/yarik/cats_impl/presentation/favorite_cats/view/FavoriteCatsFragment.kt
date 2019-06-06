@@ -33,7 +33,7 @@ class FavoriteCatsFragment: BaseFragment<FavoriteCatsPresenter>(), FavoriteCatsV
         progressBar.visibility = View.GONE
     }
 
-    override fun updateFaviriteCats(cats: List<CatsViewModel>) {
+    override fun updateFaviriteCats(cats: MutableList <CatsViewModel>) {
         val adapter = FavoriteCatsAdapter(cats)
         favoriteCatsListView.adapter = adapter
     }

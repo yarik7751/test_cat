@@ -5,7 +5,9 @@ import by.yarik.core.presentation.view.BaseView
 
 interface CatsView : BaseView {
 
-    fun updateCats(catsList : List<CatsViewModel>)
+    fun updateCats(catsList : MutableList <CatsViewModel>)
+
+    fun clearCatList()
 
     fun startProgress()
 

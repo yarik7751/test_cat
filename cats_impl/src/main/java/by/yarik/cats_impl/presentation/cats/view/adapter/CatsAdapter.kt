@@ -9,7 +9,7 @@ import by.yarik.cats_impl.viewmodel.CatsViewModel
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_cat.view.*
 
-open class CatsAdapter(var cats : List<CatsViewModel>) : RecyclerView.Adapter<CatsAdapter.CatsViewHolder>() {
+open class CatsAdapter(var cats : MutableList<CatsViewModel>) : RecyclerView.Adapter<CatsAdapter.CatsViewHolder>() {
 
     lateinit var catsCallback : OnCatCallback
 
@@ -33,6 +33,12 @@ open class CatsAdapter(var cats : List<CatsViewModel>) : RecyclerView.Adapter<Ca
 
     override fun getItemCount(): Int {
         return cats.size
+    }
+
+    fun clear() {
+        val size = cats.size
+        cats.clear()
+        notifyItemRangeRemoved(0, size)
     }
 
     class CatsViewHolder(view : View) : RecyclerView.ViewHolder(view) {

@@ -30,6 +30,11 @@ class CatsPresenterImpl(view: CatsView) : BasePresenterImpl<CatsView>(view), Cat
         getAllCats()
     }
 
+    override fun onUpdateListClick() {
+        view.clearCatList()
+        getAllCats()
+    }
+
     override fun addCatToFavoriteClick(url: String) {
         addCatToFavorite(url)
     }
@@ -40,7 +45,7 @@ class CatsPresenterImpl(view: CatsView) : BasePresenterImpl<CatsView>(view), Cat
             .doOnSubscribe { view.startProgress() }
             .doAfterTerminate { view.stopProgress() }
             .subscribe({
-                view.updateCats(it)
+                view.updateCats(it as MutableList )
             }, {onFailture(it)}))
     }
 

@@ -13,6 +13,8 @@ import kotlinx.android.synthetic.main.fragment_cats.*
 
 class CatsFragment : BaseFragment<CatsPresenter>(), CatsView {
 
+    lateinit var adapter: CatsAdapter
+
     override fun resourceLayout(): Int {
         return R.layout.fragment_cats
     }
@@ -23,10 +25,14 @@ class CatsFragment : BaseFragment<CatsPresenter>(), CatsView {
 
     override fun initUi() {
         catsListView.layoutManager = LinearLayoutManager(context)
+
+        updateList.setOnClickListener {
+            presenter.onUpdateListClick()
+        }
     }
 
-    override fun updateCats(catsList: List<CatsViewModel>) {
-        val adapter = CatsAdapter(catsList)
+    override fun updateCats(catsList: MutableList <CatsViewModel>) {
+        adapter = CatsAdapter(catsList)
         catsListView.adapter = adapter
 
         adapter.catsCallback = object : CatsAdapter.OnCatCallback {
@@ -34,6 +40,10 @@ class CatsFragment : BaseFragment<CatsPresenter>(), CatsView {
                 presenter.addCatToFavoriteClick(url)
             }
         }
+    }
+
+    override fun clearCatList() {
+        adapter.clear()
     }
 
     override fun startProgress() {
