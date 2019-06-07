@@ -1,5 +1,6 @@
 package by.yarik.cats_impl.presentation.cats.presenter
 
+import android.Manifest
 import android.os.Bundle
 import by.yarik.cats_impl.R
 import by.yarik.cats_impl.di.CatsComponent
@@ -7,6 +8,7 @@ import by.yarik.cats_impl.domain.allcats.CatsInteractor
 import by.yarik.cats_impl.presentation.cats.view.CatsView
 import by.yarik.core.ResourceManager
 import by.yarik.core.presentation.presenter.BasePresenterImpl
+import com.tbruyelle.rxpermissions2.RxPermissions
 import io.reactivex.android.schedulers.AndroidSchedulers
 import javax.inject.Inject
 
@@ -39,8 +41,19 @@ class CatsPresenterImpl(view: CatsView) : BasePresenterImpl<CatsView>(view), Cat
         addCatToFavorite(url)
     }
 
+    override fun downloadFile(url: String, permissions: RxPermissions) {
+        addDisposable(permissions.request(
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.READ_EXTERNAL_STORAGE)
+            .subscribe {
+                if (it) {
+                    downloadImage(url)
+                }
+            })
+    }
+
     private fun getAllCats() {
-        addCDisposable(interactor.getCats(DEFAULT_LIMIT)
+        addDisposable(interactor.getCats(DEFAULT_LIMIT)
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { view.startProgress() }
             .doAfterTerminate { view.stopProgress() }
@@ -49,8 +62,20 @@ class CatsPresenterImpl(view: CatsView) : BasePresenterImpl<CatsView>(view), Cat
             }, {onFailture(it)}))
     }
 
+    private fun downloadImage(url: String) {
+        addDisposable(interactor.downloadCatImage(url)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                if(it) {
+                    view.sendSimpleMessage(resourceManager.getString(R.string.cat_download_true))
+                } else{
+                    view.sendSimpleMessage(resourceManager.getString(R.string.cat_download_false))
+                }
+            }, {onFailture(it)}))
+    }
+
     private fun addCatToFavorite(url: String) {
-        addCDisposable(interactor.addCatToFavorite(url)
+        addDisposable(interactor.addCatToFavorite(url)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 addCatToFavoriteSuccessful()

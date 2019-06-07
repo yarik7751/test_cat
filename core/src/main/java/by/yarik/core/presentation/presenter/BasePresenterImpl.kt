@@ -7,7 +7,7 @@ import io.reactivex.disposables.Disposable
 abstract class BasePresenterImpl<V : BaseView>(var view: V) : BasePresenter {
     private var compositeDisposable: CompositeDisposable = CompositeDisposable()
 
-    protected fun addCDisposable(disposable: Disposable) {
+    protected fun addDisposable(disposable: Disposable) {
         compositeDisposable.add(disposable)
     }
 

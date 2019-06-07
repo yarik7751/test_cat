@@ -1,7 +1,6 @@
 package by.yarik.cats_impl.presentation.cats.view
 
 import android.view.View
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.yarik.cats_impl.R
 import by.yarik.cats_impl.presentation.cats.presenter.CatsPresenter
@@ -36,6 +35,10 @@ class CatsFragment : BaseFragment<CatsPresenter>(), CatsView {
         catsListView.adapter = adapter
 
         adapter.catsCallback = object : CatsAdapter.OnCatCallback {
+            override fun onDownloadClick(url: String) {
+                presenter.downloadFile(url, permission)
+            }
+
             override fun onCatClick(url: String) {
                 presenter.addCatToFavoriteClick(url)
             }
@@ -52,9 +55,5 @@ class CatsFragment : BaseFragment<CatsPresenter>(), CatsView {
 
     override fun stopProgress() {
         progressBar.visibility = View.GONE
-    }
-
-    override fun sendSimpleMessage(message: String) {
-        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
     }
 }

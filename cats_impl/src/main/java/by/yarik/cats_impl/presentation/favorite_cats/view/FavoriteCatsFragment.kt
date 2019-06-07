@@ -3,6 +3,7 @@ package by.yarik.cats_impl.presentation.favorite_cats.view
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.yarik.cats_impl.R
+import by.yarik.cats_impl.presentation.cats.view.adapter.CatsAdapter
 import by.yarik.cats_impl.presentation.favorite_cats.presentor.FavoriteCatsPresenter
 import by.yarik.cats_impl.presentation.favorite_cats.presentor.FavoriteCatsPresenterImpl
 import by.yarik.cats_impl.presentation.favorite_cats.view.adapter.FavoriteCatsAdapter
@@ -36,5 +37,14 @@ class FavoriteCatsFragment: BaseFragment<FavoriteCatsPresenter>(), FavoriteCatsV
     override fun updateFaviriteCats(cats: MutableList <CatsViewModel>) {
         val adapter = FavoriteCatsAdapter(cats)
         favoriteCatsListView.adapter = adapter
+
+        adapter.catsCallback = object : CatsAdapter.OnCatCallback {
+            override fun onDownloadClick(url: String) {
+                presenter.downloadFile(url, permission)
+            }
+
+            override fun onCatClick(url: String) {
+            }
+        }
     }
 }

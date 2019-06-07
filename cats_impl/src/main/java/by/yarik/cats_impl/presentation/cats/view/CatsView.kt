@@ -12,6 +12,4 @@ interface CatsView : BaseView {
     fun startProgress()
 
     fun stopProgress()
-
-    fun sendSimpleMessage(message: String)
 }

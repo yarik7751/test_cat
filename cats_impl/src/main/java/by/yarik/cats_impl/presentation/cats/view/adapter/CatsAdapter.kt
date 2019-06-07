@@ -29,6 +29,10 @@ open class CatsAdapter(var cats : MutableList<CatsViewModel>) : RecyclerView.Ada
         holder.btnAddCatTofavorite.setOnClickListener {
             catsCallback.onCatClick(url)
         }
+
+        holder.btnDownload.setOnClickListener {
+            catsCallback.onDownloadClick(url)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -44,9 +48,12 @@ open class CatsAdapter(var cats : MutableList<CatsViewModel>) : RecyclerView.Ada
     class CatsViewHolder(view : View) : RecyclerView.ViewHolder(view) {
         var ivCat = view.catsImage
         var btnAddCatTofavorite = view.addToFavorite
+        var btnDownload = view.download
     }
 
     interface OnCatCallback {
         fun onCatClick(url: String)
+
+        fun onDownloadClick(url: String)
     }
 }
